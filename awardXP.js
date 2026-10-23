@@ -15,10 +15,10 @@ actors.sort((a,b) => { return a.name.localeCompare(b.name) });
 
 const actorCheckboxes = config.includeChecklist ? actors.map(a => `
   <label class="checkbox">
-    <input type="checkbox" name="selectedActors" value="${a.id}" checked>
-    <span>${a.name}</span>
+    <input type="checkbox" name="selectedActors" value="${ a.id }" checked>
+    <span>${ a.name }</span>
   </label>
-`).join("") : '';
+`).join('') : '';
 
 const content = `
   <form>
@@ -42,12 +42,12 @@ const content = `
       <input type="number" name="customValue" step="1" placeholder="Added to base">
     </div>
     
-    ${config.includeChecklist ? `
+    ${ config.includeChecklist ? `
       <hr>
       <div class="form-group">
         <label>Actors</label>
         <div class="form-fields" style="flex-direction: column; align-items: start;">
-          ${actorCheckboxes}
+          ${ actorCheckboxes }
         </div>
       </div>
       ` : ''
@@ -57,13 +57,13 @@ const content = `
 
 const result = await foundry.applications.api.DialogV2.wait({
   window: {
-    title: "Award XP"
+    title: 'Award XP'
   },
   content,
   buttons: [
     {
-      action: "ok",
-      label: "Award It",
+      action: 'ok',
+      label: 'Award It',
       callback: (event, button, dialog) => {
         const form = dialog.element.querySelector('form');
 
@@ -75,15 +75,12 @@ const result = await foundry.applications.api.DialogV2.wait({
           )
         ].map(cb => cb.value);
 
-        return {
-          xpAmount,
-          actorIds
-        };
+        return { xpAmount, actorIds };
       }
     },
     {
-      action: "cancel",
-      label: "Cancel"
+      action: 'cancel',
+      label: 'Cancel'
     }
   ]
 });
@@ -124,7 +121,7 @@ if (actorIds.length > 0) {
       }
     }
     msg += `</li>`;
-    updates.push({_id: actor.id, 'system.details.xp.value': newXP, 'system.details.level.value': newLevel});
+    updates.push({ _id: actor.id, 'system.details.xp.value': newXP, 'system.details.level.value': newLevel });
   }
   await Actor.updateDocuments(updates);
   msg += '</ul>';
