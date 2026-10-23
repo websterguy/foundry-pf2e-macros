@@ -1,5 +1,5 @@
 const config = {
-  mode: 1, // 1 oe 2.  1 = all PCs that are members of the active party. 2 = all PCs that have a player owner.
+  mode: 1, // 1 or 2.  1 = all PCs that are members of the active party. 2 = all PCs that have a player owner.
   ignoreMinions: true, // true/false, will not include anything with the minion or eidolon traits
   ignoreOffline: false, // true/false, will only include actors with an active player user owner
   adjustLevel: true, // true/false, will automatically increase/decrease level and adjust xp remaining
